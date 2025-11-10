@@ -1,0 +1,20 @@
+// frontend/src/components/VideoUploader.js
+import React, { useState } from 'react';
+// Asume que youtubeApi está en el backend y se accede a través de una API
+// No incluyas directamente las credenciales en el frontend
+
+function VideoUploader() {
+  // ... (código del frontend para seleccionar y subir el video)
+
+  const handleUpload = async () => {
+    // ... (código para enviar el video al backend)
+  };
+
+  return (
+    
+      {/* ... (formulario para subir el video) */}
+    
+  );
+}
+
+export default VideoUploader;
