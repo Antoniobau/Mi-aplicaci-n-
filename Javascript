@@ -1,0 +1,45 @@
+// frontend/src/components/SongCreator.js
+import React, { useState } from 'react';
+
+function SongCreator() {
+  const [songOptions, setSongOptions] = useState({
+    voice: 'default',
+    style: 'pop',
+  });
+
+  const handleInputChange = (event) => {
+    setSongOptions({
+      ...songOptions,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    // Lógica para enviar las opciones de la canción al backend
+    console.log('Creating song with options:', songOptions);
+  };
+
+  return (
+    <div className="song-creator">
+      <label>
+        Voice:
+        <select name="voice" value={songOptions.voice} onChange={handleInputChange}>
+          <option value="default">Default</option>
+          <option value="tenor">Tenor</option>
+          <option value="soprano">Soprano</option>
+        </select>
+      </label>
+      <label>
+        Style:
+        <select name="style" value={songOptions.style} onChange={handleInputChange}>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="electronic">Electronic</option>
+        </select>
+      </label>
+      <button onClick={handleSubmit}>Create Song</button>
+    </div>
+  );
+}
+
+export default SongCreator;
