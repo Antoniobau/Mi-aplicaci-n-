@@ -17,3 +17,5 @@ mi-proyecto/
 ├── .gitignore
 ├── README.md
 └── ...
+git init
+
