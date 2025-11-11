@@ -17,3 +17,46 @@
     "googleapis": "^128.0.0"
   }
 }
+
+require('dotenv').config();
+const axios = require('axios');
+
+const SUNO_API_URL = process.env.SUNO_API_URL;
+const SUNO_API_KEY = process.env.SUNO_API_KEY;
+
+async function generateMusic(prompt) {
+    try {
+        const response = await axios.post(
+            SUNO_API_URL,
+            { prompt },
+            {
+                headers: {
+                    'Authorization': `Bearer ${SUNO_API_KEY}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        // Verificar si hay un error en la respuesta
+        if (response.data && response.data.error_message) {
+            console.error('❌ Error de Suno:', response.data.error_message.file_error_message);
+            throw new Error(response.data.error_message.file_error_message);
+        }
+
+        // Asumiendo que la API devuelve directamente la URL o está anidada
+        const video_url = response.data.video_url || response.data.url || response.data;
+
+        if (!video_url) {
+            throw new Error('No se recibió un video desde Suno');
+        }
+
+        console.log('✅ Video generado:', video_url);
+        return video_url;
+
+    } catch (error) {
+        console.error('❌ Error generando música con Suno:', error.message);
+        throw error;
+    }
+}
+
+module.exports = { generateMusic };
