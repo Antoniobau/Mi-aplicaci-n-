@@ -1,0 +1,10 @@
+{
+  "name": "suno-proxy",
+  "version": "1.0.0",
+  "description": "Proxy para la API de Suno AI, desplegable en Vercel",
+  "main": "api/generate.js",
+  "scripts": {
+    "start": "vercel dev"
+  },
+  "dependencies": {}
+}
